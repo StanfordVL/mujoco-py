@@ -213,6 +213,12 @@ cdef class MjRenderContext(object):
         """ Moves the camera based on mouse movements. Action is one of mjMOUSE_*. """
         mjv_moveCamera(self._model_ptr, action, reldx, reldy, &self._scn, &self._cam)
 
+    def get_geoms(self):
+        sids = []
+        for g in self._scn.geoms[:self._scn.ngeom]:
+            sids.append(g)
+        return np.array(sids)
+
     def add_overlay(self, int gridpos, str text1, str text2):
         """ Overlays text on the scene. """
         if gridpos not in self._overlay:
