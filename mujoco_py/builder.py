@@ -72,6 +72,8 @@ The easy solution is to `import mujoco_py` _before_ `import glfw`.
             Builder = LinuxGPUExtensionBuilder
         else:
             Builder = LinuxCPUExtensionBuilder
+        # render w/ GPU by default on linux
+        Builder = LinuxGPUExtensionBuilder
     elif sys.platform.startswith("win"):
         var = "PATH"
         if var not in os.environ or lib_path not in os.environ[var].split(";"):
